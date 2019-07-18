@@ -34,7 +34,7 @@ void togglePinVect (void) {
 detachPCInterrupt(A0);
 
 // 割込を停止 - A0を含むポートグループ全体を止め、割込ベクタも解除
-detachPCInterrupt(A0, false);
+detachPCInterrupt(A0, true);
 
 ```
 
@@ -93,7 +93,7 @@ MCUの品種によってピン割付定義が異なる。
 普通はそのようにして使うだろう。
 SoftwareSerial はまさにそのようにして外部ピン変化割込を利用している。
 
-#### void detachPCInterrupt (uint8\_t interruptPin, bool removeAll = true)
+#### void detachPCInterrupt (uint8\_t interruptPin, bool removeAll = false)
 
 第2引数を省略あるいは偽の場合、第1引数で指定したピンに対応する PCINT割込を解除する。割込ベクタは解除されない。
 
