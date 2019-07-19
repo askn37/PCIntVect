@@ -3,7 +3,7 @@
 ピン変化割込関数
 
 元は [Futilities](https://github.com/askn37/Futilities/) に含まれていたものだが、
-Arduino IDE でのコンパイルで、環境によっては __vect_* 重複エラーが多発するのを避けるため
+Arduino IDE でのコンパイルで、環境によっては \_\_vect\_* 重複エラーが多発するのを避けるため
 機能分離を行った。
 
 ## Arduino IDE への導入
@@ -25,9 +25,9 @@ attachPCInterrupt(A0, togglePinVect);
 volatile bool toggle = true;
 
 void togglePinVect (void) {
-    // bool edge = digitalRead(A0);
-    toggle = ~toggle;
-    digitalWrite(LED_BUILTIN, toggle);
+  // bool edge = digitalRead(A0);
+  toggle = ~toggle;
+  digitalWrite(LED_BUILTIN, toggle);
 }
 
 // 割込を停止 - A0だけ停止、割込ベクタは解除しない
@@ -40,13 +40,7 @@ detachPCInterrupt(A0, true);
 
 ## リファレンス
 
-ほとんどは C言語関数形式である。
-
-- [ピン変化割込](#pcintvecth)
-
-----
-
-### pcintvect.h
+## pcintvect.h
 
 ピン変化割込
 
@@ -55,7 +49,7 @@ detachPCInterrupt(A0, true);
 注意：
 SoftwareSerial とは併用できない。
 
-#### void attachPCInterrupt (uint8\_t interruptPin, void (*userFunc)(void) = NULL)
+### void attachPCInterrupt (uint8\_t interruptPin, void (*userFunc)(void) = NULL)
 
 指定のピンに対応する外部ピン変化割込を有効にし、
 指定のユーザー定義ルーチンを割込ベクタに割り付ける。
@@ -93,7 +87,7 @@ MCUの品種によってピン割付定義が異なる。
 普通はそのようにして使うだろう。
 SoftwareSerial はまさにそのようにして外部ピン変化割込を利用している。
 
-#### void detachPCInterrupt (uint8\_t interruptPin, bool removeAll = false)
+### void detachPCInterrupt (uint8\_t interruptPin, bool removeAll = false)
 
 第2引数を省略あるいは偽の場合、第1引数で指定したピンに対応する PCINT割込を解除する。割込ベクタは解除されない。
 
@@ -123,4 +117,4 @@ MIT
 朝日薫 / askn
 (SenseWay Inc.)
 Twitter: [@askn37](https://twitter.com/askn37)
-GitHub: https://github.com/askn37
+GitHub: [https://github.com/askn37](https://github.com/askn37)
