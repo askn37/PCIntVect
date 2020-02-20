@@ -35,7 +35,9 @@ ISR(PCINT3_vect) { __pcint_vect[3](); }
 
 void attachPCInterrupt (uint8_t interruptPin, void (*userFunc)(void)) {
     int _pcint = digitalPinToPCICRbit(interruptPin);
-    __pcint_vect[_pcint & 3] = userFunc != NULL ? (volatile void (*)(void)) userFunc : (volatile void (*)(void)) __empty;
+    __pcint_vect[_pcint & 3] = userFunc != NULL
+		? (volatile void (*)(void)) userFunc
+		: (volatile void (*)(void)) __empty;
     *digitalPinToPCMSK(interruptPin) |= _BV(digitalPinToPCMSKbit(interruptPin));
     PCICR |= _BV(_pcint);
 }
